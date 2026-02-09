@@ -3,6 +3,8 @@ package com.bookpack.demo.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,8 +22,8 @@ public class BookController {
 	private BookService bookService;
 
 	@GetMapping("/books")
-	public ArrayList<Book> getBooks() {
-		return bookService.getBooks();
+	public ResponseEntity<ArrayList<Book>> getBooks() {
+		return ResponseEntity.status(HttpStatus.OK).body(bookService.getBooks());
 	}
 
 	@GetMapping("/book/{id}")
